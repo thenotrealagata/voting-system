@@ -1,0 +1,14 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VotingSystem.API.Model.Entities
+{
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string Email { get; set; }
+
+
+    }
+}
