@@ -12,7 +12,12 @@ namespace VotingSystem.API.Model.Entities
         public string Title { get; set; }
 
         [Required]
-        public List<VoteOption> Options { get; set; }
+        public List<VoteOption> VoteOptions { get; set; }
 
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+        public DateTime CreatedAt { get; set; }
     }
 }

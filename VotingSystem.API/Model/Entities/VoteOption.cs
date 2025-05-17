@@ -10,7 +10,6 @@ namespace VotingSystem.API.Model.Entities
         [Required]
         public string Title { get; set; }
 
-        [Required]
         public byte[] Image { get; set; }
     }
 }
