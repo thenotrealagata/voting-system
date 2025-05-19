@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace VotingSystem.API.Model.Entities
@@ -11,13 +12,17 @@ namespace VotingSystem.API.Model.Entities
         [Required]
         public string Title { get; set; }
 
-        [Required]
-        public List<VoteOption> VoteOptions { get; set; }
+        public virtual ICollection<VoteOption> VoteOptions { get; set; } = [];
 
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; } = null!;
     }
 }

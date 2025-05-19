@@ -11,6 +11,7 @@ namespace VotingSystem.API
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<VotingSystemDbContext>(options => options
                 .UseSqlServer(connectionString)
+                .UseLazyLoadingProxies()
             );
 
             // Services

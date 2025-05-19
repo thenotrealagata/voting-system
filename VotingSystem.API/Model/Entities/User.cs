@@ -9,6 +9,8 @@ namespace VotingSystem.API.Model.Entities
 
         public string Email { get; set; }
 
+        public string Name { get; set; }
 
+        public virtual ICollection<Vote> Votes { get; set; } = [];
     }
 }

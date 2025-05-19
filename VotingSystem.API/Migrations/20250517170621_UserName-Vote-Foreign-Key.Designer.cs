@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VotingSystem.API;
 
@@ -11,9 +12,11 @@ using VotingSystem.API;
 namespace VotingSystem.API.Migrations
 {
     [DbContext(typeof(VotingSystemDbContext))]
-    partial class VotingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250517170621_UserName-Vote-Foreign-Key")]
+    partial class UserNameVoteForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,7 +102,7 @@ namespace VotingSystem.API.Migrations
 
                     b.HasIndex("VoteId");
 
-                    b.ToTable("VoteOptions");
+                    b.ToTable("VoteOption");
                 });
 
             modelBuilder.Entity("VotingSystem.API.Model.Entities.Vote", b =>
