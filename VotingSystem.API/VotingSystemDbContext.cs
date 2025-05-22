@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using VotingSystem.API.Model.Entities;
 
 namespace VotingSystem.API
 {
-    public class VotingSystemDbContext : DbContext
+    public class VotingSystemDbContext : IdentityDbContext<User, UserRole, string>
     {
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<VoteOption> VoteOptions { get; set; } = null!;

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using VotingSystem.API.Model.Entities;
 using VotingSystem.API.Services;
 
 namespace VotingSystem.API
@@ -16,6 +18,21 @@ namespace VotingSystem.API
 
             // Services
             services.AddScoped<IVoteService, VoteService>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddIdentity<User, UserRole>(options =>
+            {
+                // Password settings.
+                options.Password.RequiredLength = 6;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+                options.User.RequireUniqueEmail = true;
+            })
+               .AddEntityFrameworkStores<VotingSystemDbContext>()
+               .AddDefaultTokenProviders();
 
             return services;
         }
