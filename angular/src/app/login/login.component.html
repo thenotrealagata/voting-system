@@ -1,0 +1,20 @@
+<main>
+    <p-card [style]="{ margin: 'auto', width: '50%' }">
+        <ng-template #title>
+            <p [style]="{ textAlign: 'center' }">Voting system</p>
+        </ng-template>
+        <ng-template #subtitle>
+            <p [style]="{ textAlign: 'center' }">Log in to continue</p>
+        </ng-template>
+        <p-floatlabel variant="on" class="mt-3">
+            <input style="width: 60%" id="email" type="text" pInputText formControlName="email" />
+            <label for="email">E-mail</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on" class="mt-3 mb-3">
+            <input style="width: 60%" id="password" type="password" pInputText formControlName="password" />
+            <label for="password">Password</label>
+        </p-floatlabel>
+        <p-button (onClick)="login()" label="Log in" />
+        <p>Don't have an account yet? Register here.</p>
+    </p-card>
+</main>
