@@ -22,13 +22,32 @@ namespace VotingSystem.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(statusCode: StatusCodes.Status201Created, type: typeof(UserResponseDto))]
-        public async Task<IActionResult> AddUser([FromBody] UserRequestDto userRequestDto)
+        public async Task<IActionResult> CreateUser([FromBody] UserRequestDto userRequestDto)
         {
             var user = _mapper.Map<User>(userRequestDto);
             await _userService.AddUserAsync(user, userRequestDto.Password);
 
             var response = _mapper.Map<UserResponseDto>(user);
-            return CreatedAtAction(nameof(AddUser), new { id = response.Id }, response);
+            return CreatedAtAction(nameof(CreateUser), new { id = response.Id }, response);
         }
+
+        [HttpPost]
+        [Route("login")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(LoginResponseDto))]
+        public async Task<IActionResult> Login(LoginRequestDto loginRequestDto)
+        {
+            var (authToken, refreshToken, userId) = await _userService.LoginAsync(loginRequestDto.Email, loginRequestDto.Password);
+            var response = new LoginResponseDto
+            {
+                AuthToken = authToken,
+                RefreshToken = refreshToken,
+                UserId = userId
+            };
+
+            return Ok(response);
+        }
+
+
+
     }
 }

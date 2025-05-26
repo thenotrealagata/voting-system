@@ -19,6 +19,7 @@ namespace VotingSystem.API
             // Services
             services.AddScoped<IVoteService, VoteService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddIdentity<User, UserRole>(options =>
             {
